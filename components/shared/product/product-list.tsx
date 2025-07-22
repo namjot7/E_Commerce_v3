@@ -13,12 +13,8 @@ const ProductList = ({ data, title, limit }: { data: any; title?: string; limit?
                         <ProductCard key={product.slug} product={product} />
                     ))}
                 </div>
-            ) :
-                (
-                    <div>No products</div>
-                )}
+            ) : (<div>No products</div>)}
         </div>
     )
 }
-
 export default ProductList

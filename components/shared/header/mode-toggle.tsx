@@ -14,7 +14,7 @@ const ModeToggle = () => {
         setMounted(true);
     }, []);
 
-    if (!mounted) {
+    if (!mounted) {// checks if the component is mounted/rendered to avoid hydration mismatch
         return null;
     }
     return (
@@ -37,14 +37,13 @@ const ModeToggle = () => {
                     onClick={() => setTheme("system")}>
                     System
                 </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
+                {/* <DropdownMenuSeparator /> */}
 
                 <DropdownMenuCheckboxItem
                     checked={theme === "dark"}
                     onClick={() => setTheme("dark")}>
                     Dark
                 </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
 
                 <DropdownMenuCheckboxItem
                     checked={theme === "light"}

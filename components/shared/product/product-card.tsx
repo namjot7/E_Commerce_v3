@@ -24,6 +24,7 @@ const ProductCard = ({ product }: { product: any }) => {
                 <div className="text-xs">{product.brand}</div>
                 <Link href={`/product/${product.slug}`}>
                     <h2 className="font-medium">{product.name}</h2>
+                    {/* {(product.name.length < 30) ? product.name : product.name.slice(0, 25) + "..."} */}
                 </Link>
                 <div className="flex-between">
                     <p>{product.rating} Stars</p>
@@ -33,15 +34,10 @@ const ProductCard = ({ product }: { product: any }) => {
                             {wholeVal}
                             <span className="text-xs">.{decimalVal}</span>
                         </p>
-                    ) : (
-                        <p className="text-destructive">Out of stock</p>
-                    )}
+                    ) : (<p className="text-destructive">Out of stock</p>)}
                 </div>
             </CardContent>
-
         </Card >
-
     );
 }
-
 export default ProductCard;
