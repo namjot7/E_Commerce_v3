@@ -6,12 +6,14 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import ProductPrice from "./product-price";
 
-const ProductCard = ({ product }: { product: any }) => {
+const ProductCard = ({ product }: { product: Product }) => { // Product type is self creation in Types folder
     const priceString = product.price.toString();
-    const [wholeVal, decimalVal] = priceString.split('.');
+    // const [wholeVal, decimalVal] = priceString.split('.');
 
     return (
         <Card className="w-full">
@@ -29,11 +31,7 @@ const ProductCard = ({ product }: { product: any }) => {
                 <div className="flex-between">
                     <p>{product.rating} Stars</p>
                     {product.stock > 0 ? (
-                        <p className="text-2xl">
-                            <span className="text-xs align-super">$</span>
-                            {wholeVal}
-                            <span className="text-xs">.{decimalVal}</span>
-                        </p>
+                        <ProductPrice value={Number(product.price)} />
                     ) : (<p className="text-destructive">Out of stock</p>)}
                 </div>
             </CardContent>
