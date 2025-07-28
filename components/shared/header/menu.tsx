@@ -3,12 +3,11 @@ import ModeToggle from './mode-toggle'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-import { EclipseIcon, MenuIcon, ShoppingCart, UserIcon } from 'lucide-react'
+import { MenuIcon, ShoppingCart, UserIcon } from 'lucide-react'
 import {
     Sheet,
     SheetContent,
     SheetDescription,
-    SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"

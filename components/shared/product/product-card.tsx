@@ -1,10 +1,7 @@
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card"
 import { Product } from "@/types";
 import Image from "next/image";
@@ -12,9 +9,6 @@ import Link from "next/link";
 import ProductPrice from "./product-price";
 
 const ProductCard = ({ product }: { product: Product }) => { // Product type is self creation in Types folder
-    const priceString = product.price.toString();
-    // const [wholeVal, decimalVal] = priceString.split('.');
-
     return (
         <Card className="w-full">
             <CardHeader>
