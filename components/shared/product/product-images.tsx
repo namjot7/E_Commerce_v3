@@ -3,7 +3,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const ProductImages = ({ images }: { images: string[] }) => {
-    console.log(images);
     const [current, setCurrent] = useState(0);
 
     return (
@@ -20,7 +19,8 @@ const ProductImages = ({ images }: { images: string[] }) => {
                     {images.map((image, idx) => (
                         <div
                             key={image}
-                            onClick={() => setCurrent(idx)}
+                            onMouseEnter={() => setCurrent(idx)}
+                            onMouseOut={() => setCurrent(0)}
                             className={`border hover:border-orange-500 cursor-pointer 
                                 ${current == idx ? "border-orange-500" : ""}
                                 `}
