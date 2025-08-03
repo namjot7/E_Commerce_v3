@@ -2,7 +2,7 @@
 
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { signInFormSchema } from "../validators";
-import { signIn, signOut } from "@/auth";
+import { signIn, signOut } from "@/auth.config";
 
 // Sign user in
 export async function signInWithCredentials(
@@ -14,10 +14,15 @@ export async function signInWithCredentials(
             email: formData.get('email'),
             password: formData.get('password')
         });
+        console.log('working trye', user, formData);
+
         await signIn('credentials', user);
+        // const result=await res.json()
+        // console.log(res);
 
         return { success: true, message: "User signed in successfully." }
-    } catch (error) {
+    }
+    catch (error) {
         if (isRedirectError(error)) {
             throw error;
         }

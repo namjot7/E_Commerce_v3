@@ -4,12 +4,25 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import CredentialsSigninForm from "./credentails-signin-form";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth.config";
 
 export const metadata: Metadata = {
     title: 'Sign In',
 };
 
-const SignIn = () => {
+const SignInPage = async (props: {
+    searchParams: Promise<{
+        callbackUrl: string
+    }>
+}) => {
+    const session = await auth();
+    const { callbackUrl } = await props.searchParams;
+
+    // Redirect to home page if user is logged in
+    if (session) {
+        redirect(callbackUrl || '/');
+    }
     return (
         <div className="w-full max-w-md mx-auto">
             <Card>
@@ -27,11 +40,11 @@ const SignIn = () => {
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                   <CredentialsSigninForm/>
+                    <CredentialsSigninForm />
                 </CardContent>
             </Card>
         </div>
     )
 }
 
-export default SignIn
+export default SignInPage;

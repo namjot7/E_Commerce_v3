@@ -1,13 +1,33 @@
+'use client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { signInWithCredentials } from '@/lib/actions/user.actions'
 import { defaultFormValues } from '@/lib/constants'
 import Link from 'next/link'
-import React from 'react'
+import { useSearchParams } from 'next/navigation'
+import React, { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 
 const CredentialsSigninForm = () => {
+    const [data, action] = useActionState(signInWithCredentials, {
+        success: false,
+        message: ''
+    });
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get('callbackUrl') || '';
+
+    const SignInButton = () => {
+        const { pending } = useFormStatus();
+        return (
+            <Button disabled={pending} variant='default' className='w-full'>
+                {pending ? 'Signing In...' : "Sign In"}
+            </Button>
+        )
+    }
     return (
-        <form>
+        <form action={action}>
+            <input type='hidden' name='callbackUrl' value={callbackUrl} />
             <div className="space-y-4">
                 <div>
                     <Label htmlFor='email'>Email</Label>
@@ -22,8 +42,12 @@ const CredentialsSigninForm = () => {
                     />
                 </div>
                 <div>
-                    <Button className='w-full' variant='default'>Sign In</Button>
+                    {/* <Button className='w-full' variant='default'>Sign In</Button> */}
+                    <SignInButton />
                 </div>
+                {data && !data.success && (
+                    <div className='text-center text-destructive'>{data.message}</div>
+                )}
                 <div className="text-sm text-center text-muted-foreground">
                     Don't have an account?&nbsp;
                     <Link href={'/sign-up'} target='_self' className='link'>Sign Up now</Link>
