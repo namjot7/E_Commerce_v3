@@ -4,8 +4,8 @@ import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { signInFormSchema, signUpFormSchema } from "../validators";
 import { signIn, signOut } from "@/auth.config";
 import { prisma } from "@/db/prisma";
-import { success } from "zod";
 import { hashSync } from "bcryptjs";
+import { formatError } from "../utils";
 
 // Sign user in
 export async function signInWithCredentials(
@@ -69,6 +69,12 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
         if (isRedirectError(error)) {
             throw error;
         }
-        return { success: false, message: "Account not found." }
+        // console.log(error);
+        // console.log(error.errors);
+        // console.log(error.code);
+        // console.log(error.name);
+        // console.log(error.meta?.target);
+
+        return { success: false, message: formatError(error) };
     }
 }

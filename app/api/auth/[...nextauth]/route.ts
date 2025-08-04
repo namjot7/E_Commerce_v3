@@ -1,5 +1,4 @@
 import { handlers } from "@/auth.config";
-import { NextResponse } from "next/server";
 
 // async function GET() {
 //         return NextResponse.json({success:true})

@@ -31,13 +31,13 @@ const SignUpForm = () => {
             <div className="space-y-4">
                 <div>
                     <Label htmlFor='name'>Name</Label>
-                    <Input id='name' name='name' type='text' required autoComplete='name'
+                    <Input id='name' name='name' type='text' autoComplete='name'
                         defaultValue={signUpDefaultValues.name}
                     />
                 </div>
                 <div>
                     <Label htmlFor='email'>Email</Label>
-                    <Input id='email' name='email' type='email' required autoComplete='email'
+                    <Input id='email' name='email' type='text' autoComplete='email'
                         defaultValue={signUpDefaultValues.email}
                     />
                 </div>

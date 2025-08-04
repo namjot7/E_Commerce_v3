@@ -8,8 +8,8 @@ export const signInDefaultValues = {
     password: '000000'
 }
 export const signUpDefaultValues = {
-    name:'',
-    email: '@gmail.com',
+    name: '',
+    email: '',
     password: '000000',
     confirmPassword: '000000',
 }
