@@ -78,7 +78,22 @@ export const config = {
                 }
             }
             return token;
-        }
+        },
+        // authorized({ request, auth }: any) {
+        //     // check for session cart cookie
+        //     if (!request.cookies.get('sessionCartId')) {
+        //         // Generate new session card id cookie
+        //         const sessionCartId = crypto.randomUUID();
+        //         console.log('why the fuck is this not working?', sessionCartId);
+
+        //         return true;
+        //     }
+        //     else {
+        //         console.log('why the fuck is this not working?');
+
+        //         return true;
+        //     }
+        // }
     }
 } satisfies NextAuthConfig;
 
