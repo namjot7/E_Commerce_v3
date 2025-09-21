@@ -8,7 +8,7 @@ export function middleware(request: any) { // request: NextRequest
     if (!request.cookies.get("sessionCartId")) {
         // Generate new session card id cookie
         const sessionCartId = crypto.randomUUID()
-        console.log("Generated new session cart:", sessionCartId)
+        // console.log("Generated new session cart:", sessionCartId)
 
         // clone the req headers
         const newRequestHeaders = new Headers(request.headers);

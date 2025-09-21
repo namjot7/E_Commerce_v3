@@ -5,6 +5,11 @@ import React from 'react'
 
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
+export const metadata = {
+  title: 'Home',
+  description: "Modern E-commerce store",
+};
+
 const Home = async () => {
   const latestProducts = await getLatestProducts()
   // await delay(2000) // just for testing
