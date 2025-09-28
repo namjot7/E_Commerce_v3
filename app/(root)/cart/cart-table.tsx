@@ -1,25 +1,29 @@
 'use client'
 import { Cart } from '@/types'
 import Link from 'next/link'
+import Image from 'next/image';
+import { useTransition } from 'react';
+import AddToCart from '@/components/shared/product/add-to-cart';
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
-    TableFooter,
     TableHead,
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import Image from 'next/image';
+import {
+    Card,
+    CardContent,
+} from "@/components/ui/card"
+import { formatCurrency } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { useTransition } from 'react';
-import { removeItemFromCart } from '@/lib/actions/cart.actions';
-import { toast } from '@/hooks/use-toast';
-import AddToCart from '@/components/shared/product/add-to-cart';
+import { useRouter } from 'next/navigation';
+import { ArrowRight, Loader } from 'lucide-react';
 
 const CartTable = ({ cart }: { cart?: Cart }) => {
     // console.log(cart);
+    const router = useRouter()
     const [isPending, startTransition] = useTransition()
 
     return (
@@ -31,9 +35,9 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                 </div>
             ) : (
                 // md:grid-cols-4 md:gap-5
-                <div className="grid">
+                <div className="grid md:grid-cols-4 md:gap-5">
                     {/* overflow-x-auto md:col-span-3 */}
-                    <div className="">
+                    <div className="overflow-x-auto md:col-span-3">
                         <Table>
                             <TableHeader>
                                 <TableRow>
@@ -63,6 +67,24 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                             </TableBody>
                         </Table>
                     </div>
+                    <Card>
+                        <CardContent className='p-4'>
+                            <div className="text-xl flex justify-between ">
+                                Subtotal: ({cart.items.reduce((a, c) => a + Number(c.qty), 0)})
+                                <span className="font-bold">
+                                    {formatCurrency(cart.itemsPrice)}
+                                </span>
+                            </div>
+                            <Button disabled={isPending} className='w-full my-5'
+                                onClick={() => startTransition(async () => router.push('/shipping-address'))}>
+                                {isPending ? (
+                                    <Loader className='w-4 h-4 animate-spin' />
+                                ) : (
+                                    <ArrowRight className='w-4 h-4' />
+                                )} Proceed to Checkout
+                            </Button>
+                        </CardContent>
+                    </Card>
                 </div >
             )}
         </>
