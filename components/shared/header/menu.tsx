@@ -19,8 +19,9 @@ const Menu = () => {
             {/* Desktop nav */}
             <nav className="hidden md:flex">
                 <ModeToggle />
-                <Button asChild variant='ghost'>
+                <Button asChild variant='ghost' className='relative'>
                     <Link href='/cart'>
+                        {/* <span className="absolute top-0 text-sm right-1.5 rounded-full">2</span> */}
                         <ShoppingCart /> Cart
                     </Link>
                 </Button>

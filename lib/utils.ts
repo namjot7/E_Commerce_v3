@@ -20,15 +20,13 @@ export function formatNumberWithDecimal(num: number): string {
 }
 
 // Format errors (SignUp Form)
-// above line of comment is to avoid type error in production
 export function formatError(error: unknown) {
   // console.log(error);
 
   // handle Zod error
+  // extract all error messages from an object and create an array of them
   if (error instanceof ZodError) {
-    // extract all error messages from an object and create an array of them
-    // const fieldErrors = Object.keys(error.issues).map((field) => error.issues[field].message)
-    const fieldErrors = error.issues.map((issue) => issue.message)
+    const fieldErrors = error.issues.map(issue => issue.message)
     return fieldErrors.join('. ');
   }
   // handle Prisma error
